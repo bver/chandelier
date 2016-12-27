@@ -19,5 +19,5 @@ axis_radius = 1;
 bearing_length = 1.25;
 tolerance = 0.1;
 
-leaf_teeth = 11;
+leaf_teeth = 15;
 

@@ -44,13 +44,16 @@ module three_leaves() {
     base_teeth = round(leaf_teeth * leaf_open_angle / leaf_slide_angle);
     circular_pitch = fit_spur_gears(base_teeth, leaf_teeth, axis_radius*2.2 + axis_length/2);   
     echo("circular_pitch=", circular_pitch);
+    echo("leaf_teeth=", leaf_teeth);
+    echo("base_teeth=", base_teeth);
     color([0.5, 0.70, 0.5, 1]) translate([-axis_length/2, 0, 0]) rotate([0, 90, 0])
         //cylinder(bearing_length, axis_radius*2.2, axis_radius*2.2, center=true);
-        gear(circular_pitch=circular_pitch,   
-            rim_thickness = bearing_length,
-            hub_thickness = bearing_length,
+        bevel_gear(outside_circular_pitch=circular_pitch,   
+            face_width = bearing_length,
             circles=0,
             bore_diameter = 0,
+            cone_distance = axis_length,
+            pressure_angle=30,
             number_of_teeth=leaf_teeth);
 
 }
