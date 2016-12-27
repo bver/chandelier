@@ -12,13 +12,12 @@ module leaf(open, angle=0) {
             
             rotate([0, 0, open*leaf_slide_angle]) 
                 bearing_bar();
-        }      
-        
-        base();
+        }            
     }
 }
 
 // main
+solid_base();
 time = 2*abs($t-0.5);
 for(a = [0 : 360/leafs : 360])
     leaf(time, a);
