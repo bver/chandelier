@@ -11,7 +11,7 @@ module sub_leaf() {
     }
 }
 
-module moveable_3_leaf() {      
+module three_leaves() {      
     difference() {
         union() {
             color([0.1, 0.3, 0.2, 1]) 
@@ -45,4 +45,4 @@ module moveable_3_leaf() {
 }
 
 // main
-moveable_3_leaf();
+three_leaves();

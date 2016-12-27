@@ -1,7 +1,7 @@
 
 include <constants.scad>
 
-module base() {
+module base_part() {
   color([0.4, 0.4, 0.4, 1]) difference() {
     translate([0, leaf_radius/2+axis_radius*2, -leaf_z*3.66])  
         cube([axis_length*1.6, leaf_radius, axis_radius*1.4], center=true);
@@ -16,6 +16,12 @@ module base() {
   }
 }
 
+module solid_base() {
+    for(angle = [0 : 360/leafs : 360])
+        rotate([0, 0, angle])
+            base_part();
+}
+
 // main
-base();
+solid_base();
 
