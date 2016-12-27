@@ -17,7 +17,10 @@ leafs = 6;
 axis_length = 10;
 axis_radius = 1;
 bearing_length = 1.25;
+bearing_radius = axis_radius*2.2;
 tolerance = 0.1;
 
-leaf_teeth = 15;
+leaf_teeth = 17;
+pressure_angle = 20;
+
 

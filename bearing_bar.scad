@@ -14,7 +14,7 @@ module bearing_bar() {
         
         // bar
         translate([0, 0, -leaf_z*2])
-            cube([axis_length - 2*(bearing_length+tolerance), axis_radius*2, axis_radius], center=true);
+            cube([4*bearing_length, axis_radius*2, axis_radius], center=true);
         
         // bearing axe
         translate([0, 0, -leaf_z*3])
