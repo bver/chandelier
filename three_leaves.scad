@@ -1,5 +1,7 @@
 
 include <constants.scad>
+use <spur_generator.scad>
+use <parametric_involute_gear_v5.0.scad>
 
 module sub_leaf() {
     translate([0, 0, -leaf_z/2]) {
@@ -11,7 +13,7 @@ module sub_leaf() {
     }
 }
 
-module three_leaves() {      
+module three_leaves() {     
     difference() {
         union() {
             color([0.1, 0.3, 0.2, 1]) 
@@ -39,8 +41,17 @@ module three_leaves() {
         cylinder(axis_length, axis_radius, axis_radius, center=true);
 
     // cogged wheel
+    base_teeth = round(leaf_teeth * leaf_open_angle / leaf_slide_angle);
+    circular_pitch = fit_spur_gears(base_teeth, leaf_teeth, axis_radius*2.2 + axis_length/2);   
+    echo("circular_pitch=", circular_pitch);
     color([0.5, 0.70, 0.5, 1]) translate([-axis_length/2, 0, 0]) rotate([0, 90, 0])
-        cylinder(bearing_length, axis_radius*2.2, axis_radius*2.2, center=true);
+        //cylinder(bearing_length, axis_radius*2.2, axis_radius*2.2, center=true);
+        gear(circular_pitch=circular_pitch,   
+            rim_thickness = bearing_length,
+            hub_thickness = bearing_length,
+            circles=0,
+            bore_diameter = 0,
+            number_of_teeth=leaf_teeth);
 
 }
 
