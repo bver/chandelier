@@ -53,11 +53,9 @@ module three_leaves() {
             bore_diameter = 0,
             cone_distance = axis_length/2,
             pressure_angle = pressure_angle,
-            number_of_teeth = leaf_teeth);
-
-
-    
+            number_of_teeth = leaf_teeth);    
 }
 
 // main
-three_leaves();
+rotate([-15, 180, 0])
+    three_leaves();

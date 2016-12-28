@@ -18,14 +18,17 @@ module leaf(open, angle=0) {
 }
 
 // main
-/*
+
 solid_base();
+central_wheel();
 time = 2*abs($t-0.5);
 for(a = [0 : 360/leafs : 360])
     leaf(time, a);
-*/
+
+/*
 central_wheel();
 time = 2*abs($t-0.5);
 solid_base();
 //base_part();
 //leaf(0, 0);
+*/

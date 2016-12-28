@@ -24,7 +24,7 @@ module wheel() {
 }
 
 module cap() {
-        translate([0, 0, -leaf_z*2.5]) difference() {
+        translate([0, 0, -leaf_z*2.2]) difference() {
             cylinder(bearing_length/2, axis_radius*1.5, axis_radius*1.5, center=true);
             cylinder(bearing_length/2, axis_radius, axis_radius, center=true);
         }
@@ -37,4 +37,7 @@ module central_wheel() {
 
 // main
 central_wheel();
+//wheel();
+//cap();
+
 
