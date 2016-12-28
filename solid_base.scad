@@ -3,8 +3,8 @@ include <constants.scad>
 use <spur_generator.scad>
 use <parametric_involute_gear_v5.0.scad>
 
-module trench() {
-    translate([0, leaf_radius, -leaf_z*3]) difference() {
+module upper_trench() {
+    translate([0, leaf_radius, -leaf_z*3.1]) difference() {
         cylinder(bearing_length*.6, axis_length*0.50, axis_length*0.55, center=true);
         cylinder(bearing_length*.6, axis_length/2-bearing_radius, axis_length/2-bearing_radius, center=true);
     }
@@ -16,14 +16,21 @@ module base_part() {
         cube([axis_length*1.6, leaf_radius, axis_radius*1.4], center=true);     
 
     union() {      
+        // hole
         translate([0, leaf_radius, -leaf_z*3]) 
             cylinder(bearing_length*2, axis_radius+tolerance, axis_radius+tolerance, center=true);
-        
-        translate([0, leaf_radius, -leaf_z*3-bearing_length]) 
-            cylinder(bearing_length, axis_radius*2+tolerance, axis_radius*2+tolerance, center=true);       
-        
-        trench();
 
+        // smaller gear trench
+        translate([0, leaf_radius, -leaf_z*3-bearing_length]) 
+            cylinder(bearing_length, axis_radius*3.1, axis_radius*3.1, center=true);       
+        
+        // central gear trench
+        translate([0, 0, -leaf_z*3-bearing_length]) 
+            cylinder(bearing_length, leaf_radius-axis_radius*2.1, leaf_radius-axis_radius*2.1, center=true);       
+        
+        upper_trench();
+
+        // side cuts
         translate([0, 0, -leaf_radius]) rotate([0,0,-30])
             cube([2*leaf_radius, 2*leaf_radius, leaf_radius]);  
         translate([0, 0, -leaf_radius]) rotate([0,0,120])
@@ -31,9 +38,7 @@ module base_part() {
     }
   }
   
-  
-  // cogged wheel
-  base_teeth = round(leaf_teeth * leaf_open_angle / leaf_slide_angle);
+  // cogged wheel in upper trench
   circular_pitch = fit_spur_gears(base_teeth, leaf_teeth, bearing_radius + axis_length/2);    
   difference() {
        translate([0, leaf_radius, -bearing_radius*1.18]) 
@@ -46,6 +51,7 @@ module base_part() {
                 pressure_angle = pressure_angle,
                 number_of_teeth = base_teeth);
  
+       // outer cut
        translate([-leaf_radius, leaf_radius+axis_radius*2, -leaf_radius])
            cube([2*leaf_radius, 2*leaf_radius, leaf_radius]);  
   }

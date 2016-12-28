@@ -17,7 +17,12 @@ module leaf(open, angle=0) {
 }
 
 // main
+/*
 solid_base();
 time = 2*abs($t-0.5);
 for(a = [0 : 360/leafs : 360])
     leaf(time, a);
+*/
+time = 2*abs($t-0.5);
+base_part();
+leaf(0, 0);

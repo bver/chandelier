@@ -41,7 +41,6 @@ module three_leaves() {
         cylinder(axis_length, axis_radius, axis_radius, center=true);
 
     // cogged wheel
-    base_teeth = round(leaf_teeth * leaf_open_angle / leaf_slide_angle);
     circular_pitch = fit_spur_gears(base_teeth, leaf_teeth, bearing_radius + axis_length/2);   
     echo("circular_pitch=", circular_pitch);
     echo("leaf_teeth=", leaf_teeth);

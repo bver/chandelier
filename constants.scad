@@ -21,6 +21,9 @@ bearing_radius = axis_radius*2.2;
 tolerance = 0.1;
 
 leaf_teeth = 17;
+base_teeth = round(leaf_teeth * leaf_open_angle / leaf_slide_angle);
 pressure_angle = 20;
 
+bearing_teeth = 21;
+central_teeth = 71;
 
