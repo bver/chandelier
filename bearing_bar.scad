@@ -24,7 +24,7 @@ module bearing_bar() {
         
         // cogged wheel        
         circular_pitch = fit_spur_gears(bearing_teeth, central_teeth, leaf_radius*1.01); 
-        translate([0, 0, -3.7])
+        translate([0, 0, -central_length])
             //cylinder(bearing_length/2-tolerance, axis_radius*2, axis_radius*2, center=true);
             gear(circular_pitch = circular_pitch,
                  number_of_teeth = bearing_teeth,
@@ -33,19 +33,7 @@ module bearing_bar() {
                  gear_thickness = bearing_length/2,
                  rim_thickness = bearing_length/2,
                  hub_thickness = bearing_length/2);
-
-        translate([0, -leaf_radius, -3.7]) // -leaf_z*4.17
-            //cylinder(bearing_length/2-tolerance, axis_radius*2, axis_radius*2, center=true);
-            gear(circular_pitch = circular_pitch,
-                 number_of_teeth = central_teeth,
-                 pressure_angle = pressure_angle,
-                 bore_diameter = 0,
-                 circles = 6,
-                 hub_diameter = axis_radius/5,
-                 rim_width = axis_radius/5,
-                 gear_thickness = bearing_length/2,
-                 rim_thickness = bearing_length/2,
-                 hub_thickness = bearing_length/2);
+        
     }
 }
 

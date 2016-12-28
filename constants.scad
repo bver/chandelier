@@ -26,4 +26,5 @@ pressure_angle = 20;
 
 bearing_teeth = 21;
 central_teeth = 71;
+central_length = 3.7; 
 

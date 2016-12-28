@@ -3,6 +3,7 @@ include <constants.scad>
 use <three_leaves.scad>
 use <bearing_bar.scad>
 use <solid_base.scad>
+use <central_wheel.scad>
 
 module leaf(open, angle=0) {
     rotate([0, 0, angle]) {        
@@ -23,6 +24,8 @@ time = 2*abs($t-0.5);
 for(a = [0 : 360/leafs : 360])
     leaf(time, a);
 */
+central_wheel();
 time = 2*abs($t-0.5);
-base_part();
-leaf(0, 0);
+solid_base();
+//base_part();
+//leaf(0, 0);
