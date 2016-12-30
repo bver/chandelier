@@ -19,8 +19,8 @@ module just_bar() {
             cube([4*bearing_length, axis_radius*2, axis_radius], center=true);
         
         // bearing axe
-        translate([0, 0, -leaf_z*3])
-            cylinder(bearing_length*2-tolerance, axis_radius, axis_radius, center=true);       
+        translate([0, 0, -leaf_z*3.3])
+            cylinder(bearing_length*2.2, axis_radius, axis_radius, center=true);       
     }
 }
 

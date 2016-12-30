@@ -57,5 +57,5 @@ module three_leaves() {
 }
 
 // main
-rotate([-15, 180, 0])
+//rotate([-10, 0, 0])
     three_leaves();
