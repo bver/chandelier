@@ -13,7 +13,7 @@ module sub_leaf() {
     }
 }
 
-module three_leaves() {     
+module leaves_n_axis() {     
     difference() {
         union() {
             color([0.1, 0.3, 0.2, 1]) 
@@ -39,23 +39,41 @@ module three_leaves() {
     // axis
     color([0.3, 0.70, 0.3, 1]) rotate([0, 90, 0])
         cylinder(axis_length, axis_radius, axis_radius, center=true);
+}
 
-    // cogged wheel
+module leaves_wheel() {
     circular_pitch = fit_spur_gears(base_teeth, leaf_teeth, bearing_radius + axis_length/2);   
     echo("circular_pitch=", circular_pitch);
     echo("leaf_teeth=", leaf_teeth);
     echo("base_teeth=", base_teeth);
-    color([0.5, 0.70, 0.5, 1]) translate([0.4-axis_length/2, 0, 0]) rotate([0, 90, 0])
+    
+    color([0.5, 0.70, 0.5, 1]) difference() {
+  
+    // cogged wheel        
         //cylinder(bearing_length, bearing_radius, bearing_radius, center=true);
-        bevel_gear(outside_circular_pitch=circular_pitch,   
-            face_width = bearing_length,
-            circles = 0,
-            bore_diameter = 0,
-            cone_distance = axis_length/2,
-            pressure_angle = pressure_angle,
-            number_of_teeth = leaf_teeth);    
+        rotate([0,0,5])
+            bevel_gear(outside_circular_pitch=circular_pitch,   
+                face_width = bearing_length,
+                circles = 0,
+                bore_diameter = axis_radius*2,
+                cone_distance = axis_length/2,
+                pressure_angle = pressure_angle,
+                number_of_teeth = leaf_teeth);    
+    
+    // leaf hole
+        translate([0, bearing_length, 0])
+        cube([leaf_z, 4*axis_radius, 2*bearing_length], center=true);
+        
+    }        
+}
+
+module three_leaves() {
+    leaves_n_axis();
+    translate([0.4-axis_length/2, 0, 0]) rotate([0, 90, 0])
+        leaves_wheel();
 }
 
 // main
-//rotate([-10, 0, 0])
-    three_leaves();
+three_leaves();
+//leaves_wheel();
+//leaves_n_axis();
