@@ -22,13 +22,13 @@ module base_part() {
         translate([0, leaf_radius, -leaf_z*3]) 
             cylinder(bearing_length*2, axis_radius+tolerance, axis_radius+tolerance, center=true);
 
-        // smaller gear trench
+        // small gear trench
         translate([0, leaf_radius, -leaf_z*3-bearing_length]) 
-            cylinder(bearing_length, axis_radius*3.1, axis_radius*3.1, center=true);       
+            cylinder(bearing_length, axis_radius*3.3, axis_radius*3.3, center=true);
         
         // central gear trench
         translate([0, 0, -leaf_z*3-bearing_length]) 
-            cylinder(bearing_length, leaf_radius-axis_radius*2.1, leaf_radius-axis_radius*2.1, center=true);       
+            cylinder(bearing_length, leaf_radius-axis_radius*2.1, leaf_radius-axis_radius*2.1, center=true);
         
         upper_trench();
 
